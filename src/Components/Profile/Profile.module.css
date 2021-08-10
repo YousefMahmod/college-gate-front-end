@@ -1,0 +1,11 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--f2);
+}
+.profile img {
+    margin-bottom: 10px;
+}
+.profile span {
+    margin-bottom: 8px;
+}

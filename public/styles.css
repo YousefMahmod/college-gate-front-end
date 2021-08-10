@@ -1,0 +1,236 @@
+/* .page-wrapper {
+    display: flex;
+    flex-wrap: wrap-reverse;
+  }
+  nav {
+    width: fit-content;
+    height: 100%;
+    padding: 10px;
+    background-color: #242426;
+    display:flex;
+    flex-direction:column;
+  }
+  nav a {
+    text-decoration: none;
+    color:white;
+    margin: 10px 0px;
+  }
+  main {
+    max-width: 800px;
+    background-color: #898989;
+  }
+  .page-wrapper div{ 
+    width: 400px;
+    background-color: #242426;
+    margin: 10px 10px;
+    height: 200px;
+    color: white;
+  }
+  
+  #box1 {
+      display:none;
+  } */
+  /* Column Count and gap */
+  /* لو بتدور انك توزع العرض على جروب من العناصر بالتساوى شوف عددهم واستخدم الخاصية  */
+  /* .page-wrapper {
+    width: 75%;
+    margin: 0 auto;
+    border: 4px dashed slategray;
+    /* column-count: 3; 
+    column-gap: 50px;
+    column-width: auto;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .page-wrapper div{
+    text-align: right;
+    /* width: fit-content; 
+  } */
+  /* Column Width */
+  /* .example {
+    
+    column-width: 100px;
+    column-gap: 10px;
+    /* column-count: 4; 
+    margin-top: 40px;
+  }
+  
+  body {
+    font-size: 12px;
+    font-family: 'Georgia', serif;
+    font-weight: 400;
+    line-height: 1.45;
+    color: #333;
+    background: #ecf0f1;
+    padding: 1em;
+  }
+  ul {
+    list-style-type: none;
+  }
+  .tag {
+    text-decoration: none;
+    display: block;
+    background: white;
+    color: #333;
+    padding: 0.3em 0.75em;
+    border-radius: 0.2em;
+    margin-bottom: 0.5em;
+  }
+  .tag:hover {
+    background: #34495e;
+    color: white;
+  } */
+  /* .content {
+    border: 4px solid darkgray;
+    margin: 40px;
+  } */
+  /* div p mor specific than p */
+  /* div p {
+    border: inherit;
+    margin: inherit;
+    color:red;
+  } */
+  /* p {
+    color: aqua;
+  } */
+  /* $ means the end of href is com*/
+  /* a[href$="com"] {
+    color: burlywood;
+  }
+  a[href="Ninjia.org"] {
+    color: chartreuse;
+  } */
+  /* define all attributes that have org */
+  /* a[href*="org"] {
+    color: black;
+  } */
+
+
+
+
+
+
+
+/* fsdaglkjsdkgldhfgjkdhfsgjkfdshgjkfdshgjksfdhglkfd */
+
+  /* .login_signup {
+    background-color: var(--bgLessDarkest);
+    width: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    text-align: center;
+    
+} */
+/* .login_signup form {
+    padding: 20px;
+    
+}
+.login_signup form input {
+    color: black;
+    
+}
+.login_signup ul{
+    background-color: var(--bgDarkest);
+    list-style-type: none;
+    text-align: center;
+    column-count: 2;
+    color: var(--white);
+    padding: 0px;
+} */
+/* .login_signup .types{
+    background-color: var(--bgDarkest);
+    list-style-type: none;
+    text-align: center;
+    column-count: 3;
+    cursor: pointer;
+    color: var(--white);
+
+} */
+
+/* .login_signup li a{
+    text-decoration: none;
+} */
+/* .login_signup .active {
+    font-weight: bold;
+}
+.login_signup .not_active {
+    font-weight: normal;
+} */
+/* .radio_buttons_users {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;  
+} */
+/* The container */
+/* .login_signup form .radio_container {
+
+    position: relative;
+    padding-left: 36px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+    margin-right: 20px;
+
+} */
+/* Hide the browser's default radio button */
+/* .login_signup form .radio_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.login_signup form .radio_container li {
+    position: absolute;
+    /* opacity: 0; 
+    cursor: pointer;
+} */
+/* Create a custom radio button */
+/* .login_signup form .radio_container .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+} */
+/* On mouse-over, add a grey background color */
+/* .login_signup form .radio_container:hover input ~ .checkmark {
+    background-color: #ccc;
+} */
+/* When the radio button is checked, add a blue background */
+/* .login_signup form .radio_container input:checked ~ .checkmark {
+    background-color: var(--bgDarkest);
+    /* background-color: #2196F3; 
+} */
+/* Create the indicator (the dot/circle - hidden when not checked) */
+/* .login_signup form .radio_container .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+} */
+/* Show the indicator (dot/circle) when checked */
+/* .login_signup form .radio_container input:checked ~ .checkmark::after {
+    display: block;
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+
+}    */
+
+.container {
+
+  width: 300px;
+  height: 300px;  
+  background-color: black;
+  opacity: 0.5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

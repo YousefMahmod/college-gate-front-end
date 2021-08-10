@@ -1,0 +1,5 @@
+.home {
+    max-width: var(--mainWidth);
+    margin: auto;
+    text-align: center;
+}

@@ -1,0 +1,14 @@
+.post {
+   
+    margin: 20px auto;
+    background-color: var(--bgLessDarkest);
+    padding: 10px;
+    text-align: start;
+}
+
+.post::before {
+    width: 10px;
+    height: 100%;
+    background-color: white;
+   
+}
