@@ -1,24 +1,32 @@
-import { Route, Switch } from "react-router-dom";
-import { COURSES_LINK, HOME_LINK, WARNINGS_LINK } from "../../Constants";
+import { useContext } from "react";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { STUDENT_COURSES_LINK, STUDENT_HOME_LINK, STUDENT_WARNINGS_LINK } from "../../Constants";
+import { AuthContext } from "../../Contexts/AuthContext";
+import Courses from "../Courses/Courses";
 import Home from "./Home";
 import styles from "./Student.module.css";
 
-const Student = ({user}) => {
+const Student = () => {
     
+    const user = useContext(AuthContext);
+    const match = useRouteMatch();
+
     return ( 
        
         <Switch>
-            <Route exact path={HOME_LINK}>
-                <Home user={user} />
+
+            <Route exact path={[match.path, STUDENT_HOME_LINK]}>
+                <Home />
             </Route>
 
-            <Route path={COURSES_LINK}>
-                <div className={styles. home}>Courses</div>
+            <Route path={STUDENT_COURSES_LINK}>
+                <Courses />
             </Route>
 
-            <Route path={WARNINGS_LINK}>
+            <Route path={STUDENT_WARNINGS_LINK}>
                 <div className={styles.home}>Warnings</div>
             </Route>
+            
         </Switch>
         
     );

@@ -3,12 +3,16 @@ import { useLocation } from "react-router-dom";
 import { ItemsOfSideBarContext } from "../../Contexts/ItemsOfSideBarContext";
 import ItemButton from "./ItemButton";
 import Profile from "../Profile/Profile";
+import { AuthContext } from "../../Contexts/AuthContext";
 
-const SideBar = ({user, collapsed}) => {
+const SideBar = ({collapsed}) => {
    
     const {listOfItems} = useContext(ItemsOfSideBarContext);
     const location = useLocation();
+    const user = useContext(AuthContext);
 
+    console.log(listOfItems);
+    
     let className = "side-bar";
     if(collapsed){
         className = "side-bar-collabse" ;

@@ -2,6 +2,8 @@ import { USER_API } from "../Constants";
 
 export const signUpApi = async (userType, userInfo) => {
 
+    console.log(`${USER_API}/${userType}/signup`);
+    
     const res = await fetch(`${USER_API}/${userType}/signup`, {
 
         method: 'POST',

@@ -1,7 +1,12 @@
+import { useContext } from 'react';
+import { AuthContext } from '../../Contexts/AuthContext';
 import UserPreview from '../UserPreview/UserPreview';
 import styles from './Post.module.css';
 
-const Post = ({post, user}) => {
+const Post = ({post}) => {
+    
+    const user = useContext(AuthContext);
+    
     return (
         <div className={styles.post}>
 

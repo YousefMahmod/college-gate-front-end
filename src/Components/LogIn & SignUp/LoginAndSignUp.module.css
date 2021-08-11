@@ -73,6 +73,7 @@
     border-radius: 28px;
     text-align: center;
     background-color: var(--white);
+    color: var(--bgDarkest);
 }
 .login_signup form input:focus {
 
@@ -84,6 +85,7 @@
 .login_signup form .login_signup_button {
 
     background-color: var(--bgLessDarkest);
+    color: white;
     
 }
 

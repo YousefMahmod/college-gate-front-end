@@ -36,7 +36,7 @@ function App() {
 
   console.log("token", token);
 
-  console.log("App.js");
+  // console.log("App.js");
 
   // notFound
   // / department/login or others 

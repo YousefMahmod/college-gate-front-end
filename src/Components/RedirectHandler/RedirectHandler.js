@@ -5,7 +5,7 @@ import { AuthContext } from "../../Contexts/AuthContext";
 
 const RedirectHandler = () => {
 
-    console.log("RedirectHandler.js");
+    // console.log("RedirectHandler.js");
 
     const history = useHistory();
 
@@ -15,13 +15,13 @@ const RedirectHandler = () => {
     const {token} = useContext(AuthContext);
     const {user} = useContext(AuthContext);
 
-    console.log("RedirectHandler (token)", token);
-    console.log("RedirectHandler (user)", user);
+    // console.log("RedirectHandler (token)", token);
+    // console.log("RedirectHandler (user)", user);
 
     const location = useLocation();
     const pathName = location.pathname;
 
-    console.log("current pathName", pathName);
+    // console.log("current pathName", pathName);
 
     if(token) {
 
@@ -31,8 +31,8 @@ const RedirectHandler = () => {
         //     redirect = true;
         //     path = `/${user.type.toLowerCase()}`;
         // }
-        console.log("first slice", pathName.split("/")[1]);
-        console.log("UserType", user.type.toLowerCase());
+        // console.log("first slice", pathName.split("/")[1]);
+        // console.log("UserType", user.type.toLowerCase());
 
         if(pathName.split("/")[1] !== user.type.toLowerCase()) {
 
@@ -65,8 +65,8 @@ const RedirectHandler = () => {
         }
     }
 
-    console.log("RedirectHandler (path)", path);
-    console.log("RedirectHandler (redirect)", redirect);
+    // console.log("RedirectHandler (path)", path);
+    // console.log("RedirectHandler (redirect)", redirect);
     
     return ( 
 

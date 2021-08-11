@@ -20,16 +20,33 @@ const SignUp = ({userType}) => {
 
     const handleSubmit = (e) =>{
 
-        const userInfo = 
+        let userInfo = 
         {
             key,
-            department:{
+            user:{
                 name ,
                 email ,
                 password,
                 passwordConfirm ,
-                departmentName :departmentState
+                departmentId :departmentState
             }
+        }
+        switch (userType) {
+            case "department":
+                userInfo =  {
+                    key,
+                    department:{
+                        name ,
+                        email ,
+                        password,
+                        passwordConfirm ,
+                        departmentName :departmentState
+                    }
+                }
+                break;
+        
+            default:
+                break;
         }
         e.preventDefault();
         // dispatch({type:"SIGNUP", userInfo: userInfo, userType});
