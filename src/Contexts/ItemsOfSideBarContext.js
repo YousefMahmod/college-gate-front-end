@@ -10,32 +10,35 @@ const ItemsOfSideBarContextProvider = ({children}) => {
     const {user} = useContext(AuthContext);
 
     console.log(user);
-    switch (user.type) {
+    if(user){
+        switch (user.type) {
 
-        case "Student":
-            listOfItems = [
-                {text:"Home", link:STUDENT_HOME_LINK, id: 1}, 
-                {text:"Courses", link:STUDENT_COURSES_LINK, id: 2}, 
-                {text:"Warnings", link:STUDENT_WARNINGS_LINK, id: 3}
-            ]
-            break;
-        case "Professor":
-            listOfItems = [
-
-                {text:"Messages Overview", link:PROFESSOR_MESSAGES_OVERVIEW_LINK, id: 1}, 
-                {text:"Courses", link:PROFESSOR_COURSES_LINK, id: 2}
-                
-            ]
-            break;
-
-        default:
-            listOfItems = [
-
-                {text:"Warnings", link:PROFESSOR_MESSAGES_OVERVIEW_LINK, id: 1} 
-                
-            ]
-            break;
+            case "Student":
+                listOfItems = [
+                    {text:"Home", link:STUDENT_HOME_LINK, id: 1}, 
+                    {text:"Courses", link:STUDENT_COURSES_LINK, id: 2}, 
+                    {text:"Warnings", link:STUDENT_WARNINGS_LINK, id: 3}
+                ]
+                break;
+            case "Professor":
+                listOfItems = [
+    
+                    {text:"Messages Overview", link:PROFESSOR_MESSAGES_OVERVIEW_LINK, id: 1}, 
+                    {text:"Courses", link:PROFESSOR_COURSES_LINK, id: 2}
+                    
+                ]
+                break;
+    
+            default:
+                listOfItems = [
+    
+                    {text:"Warnings", link:PROFESSOR_MESSAGES_OVERVIEW_LINK, id: 1} 
+                    
+                ]
+                break;
+        }
     }
+   
 
     return (  
         <ItemsOfSideBarContext.Provider value={{listOfItems}}>

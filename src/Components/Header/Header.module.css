@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bgDarkest);
+    padding: 10px;
+    margin-bottom: 10px;
+    position: fixed;
+    width: 100%;
+}
+.header h1{
+
+    font-size: var(--f0);
+    font-weight: 400px;  
+}

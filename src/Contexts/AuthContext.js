@@ -1,6 +1,7 @@
 import { createContext, useReducer, useState} from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { logInApi, signUpApi } from "../API/apiRequestes";
+import { LOGIN_LINK } from "../Constants";
 import { authReducer } from "../Reducers/AuthReducer";
 
 export const AuthContext = createContext();
@@ -31,12 +32,12 @@ const AuthContextProvider = ({children}) => {
         try {
             // Get from local storage by key
             const data = localStorage.getItem("token");
-            console.log(data);
+            
             // Parse stored json or if none return initialValue
             return data ? data : null;
         } catch (error) {
             // If error also return initialValue
-            console.log(error);
+            
             return null;
         }
     });
@@ -44,6 +45,7 @@ const AuthContextProvider = ({children}) => {
     const handlerSignOut = () => {
 
         localStorage.clear();
+        
         setToken(null);
         setUser(null);
     }
@@ -60,7 +62,7 @@ const AuthContextProvider = ({children}) => {
             return data ? JSON.parse(data) : initialValue;
         } catch (error) {
             // If error also return initialValue
-            console.log(error);
+            
             return initialValue;
         }
         
@@ -78,12 +80,7 @@ const AuthContextProvider = ({children}) => {
 
     const logIn = async (userType, userInfo) => {
 
-        console.log("userType", userType);
-        console.log("userInfo", userInfo);
-
         const auth = await logInApi(userType, userInfo);
-
-        console.log("Data from AuthContext", auth);
 
         if(auth) {
 
@@ -93,21 +90,15 @@ const AuthContextProvider = ({children}) => {
             localStorage.setItem("token", JSON.stringify(auth.token));
             setToken(auth.token);
             
-            // history.push({pathname:`/${userType}`});
             return;
         }
         setLogInError(true);
-        console.log("setLogInError", logInError);
+        
     }
 
     const signUp = async (userType, userInfo) => {
 
         const user = await signUpApi(userType, userInfo);
-
-        console.log("userType", userType);
-        console.log("userInfo", userInfo);
-
-        console.log("Data from AuthContext", user);
 
         if(user) {
 
@@ -117,19 +108,13 @@ const AuthContextProvider = ({children}) => {
             localStorage.setItem("token", "DefaultData");
             setToken("DefaultData");
             
-            // history.push({pathname:`/${userType}`});
             return;
         }
 
         setSignUpError(true);
-        console.log("SignUpError", signUpError);
 
     }
-    // if(auth) {
-    //    setLoggedIn(true);
-    //    //use history to redirect to the location of user
-    //    //use localStorage to store data 
-    // }
+  
     return ( 
         <AuthContext.Provider value={{user, token, logIn, signUp, handlerSignOut}}>
             {children}

@@ -3,6 +3,7 @@ import { Route, Switch, useRouteMatch } from "react-router-dom";
 import { STUDENT_COURSES_LINK, STUDENT_HOME_LINK, STUDENT_WARNINGS_LINK } from "../../Constants";
 import { AuthContext } from "../../Contexts/AuthContext";
 import Courses from "../Courses/Courses";
+import NotFound from "../NotFound/NotFound";
 import Home from "./Home";
 import styles from "./Student.module.css";
 
@@ -19,12 +20,16 @@ const Student = () => {
                 <Home />
             </Route>
 
-            <Route path={STUDENT_COURSES_LINK}>
+            <Route exact path={STUDENT_COURSES_LINK}>
                 <Courses />
             </Route>
 
-            <Route path={STUDENT_WARNINGS_LINK}>
+            <Route exact path={STUDENT_WARNINGS_LINK}>
                 <div className={styles.home}>Warnings</div>
+            </Route>
+
+            <Route path="*">
+                <NotFound />
             </Route>
             
         </Switch>

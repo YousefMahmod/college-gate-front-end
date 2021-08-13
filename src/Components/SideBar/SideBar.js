@@ -4,24 +4,21 @@ import { ItemsOfSideBarContext } from "../../Contexts/ItemsOfSideBarContext";
 import ItemButton from "./ItemButton";
 import Profile from "../Profile/Profile";
 import { AuthContext } from "../../Contexts/AuthContext";
+import styles from './SideBar.module.css'
 
-const SideBar = ({collapsed}) => {
+const SideBar = () => {
    
     const {listOfItems} = useContext(ItemsOfSideBarContext);
     const location = useLocation();
     const user = useContext(AuthContext);
 
     console.log(listOfItems);
-    
-    let className = "side-bar";
-    if(collapsed){
-        className = "side-bar-collabse" ;
-    }
+  
     return (
          
-        <div className={className}>
+        <div className={styles.sidebar}>
 
-            <Profile user={user} />
+            {/* <Profile user={user} /> */}
             <ul>
                 {listOfItems.map((item) => (
 
@@ -35,6 +32,7 @@ const SideBar = ({collapsed}) => {
                   
                 )}
             </ul>
+            
         </div>
     );
 }

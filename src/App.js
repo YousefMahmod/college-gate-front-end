@@ -57,7 +57,6 @@ function App() {
               path={["/student", "/professor", "/department"]} 
               component={Account}
             />
-
             <Route path="*" component={NotFound}/>
 
           </Switch>

@@ -2,29 +2,29 @@
 
 import { useContext, useState } from "react";
 import { Redirect, useHistory } from "react-router";
+import { useLocation } from "react-router-dom";
 import { LOGIN_LINK } from "../../Constants";
 import { AuthContext } from "../../Contexts/AuthContext";
+import styles from './Header.module.css'
 
-const Header = ({showSideBarBlock, collabsed, handleOnClick}) => {
+const Header = () => {
     
     const history = useHistory();
-    // const [signOut, setSignOut] = useState(false);
+   
     const {handlerSignOut} = useContext(AuthContext);
-    // console.log(signOut);
+   
+    const signOut = () => {
 
-    // const handlerSignOut = () => {
-
-    //     // localStorage.clear();
-    //     localStorage.setItem("token", null)
-    //     console.log("signOut Called");
-    //     setSignOut(true);
-    //     console.log("signOut", signOut);
-    // } 
+        history.replace({pathname:LOGIN_LINK});
+        
+        handlerSignOut();
+    }
+   
     return ( 
-        <div className="header">
+        <div className={styles.header}>
 
             {/* {signOut && <Redirect to={LOGIN_LINK} />} */}
-
+{/* 
             {showSideBarBlock && (<svg
     
                 xmlns="http://www.w3.org/2000/svg" 
@@ -48,7 +48,7 @@ const Header = ({showSideBarBlock, collabsed, handleOnClick}) => {
                 <line x1="5" y1="6" x2="5" y2="6.01" />
                 <line x1="5" y1="12" x2="5" y2="12.01" />
                 <line x1="5" y1="18" x2="5" y2="18.01" />
-            </svg>)}
+            </svg>)} */}
 
             <h1>College Gate</h1>
             
@@ -57,7 +57,7 @@ const Header = ({showSideBarBlock, collabsed, handleOnClick}) => {
             <img 
                 src="Icons/sign-out-alt-solid.svg" 
                 alt="signOut"
-                onClick={ handlerSignOut} 
+                onClick={ signOut} 
             />
             
         </div>

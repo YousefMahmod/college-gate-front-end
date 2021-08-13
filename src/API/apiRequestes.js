@@ -1,8 +1,6 @@
 import { USER_API } from "../Constants";
 
 export const signUpApi = async (userType, userInfo) => {
-
-    console.log(`${USER_API}/${userType}/signup`);
     
     const res = await fetch(`${USER_API}/${userType}/signup`, {
 
@@ -28,12 +26,10 @@ export const logInApi = async (userType, userInfo) => {
         body: JSON.stringify(userInfo)
     })
 
-    console.log("response", res);
-
     if(res.ok){
 
         const data =  await res.json();
-        console.log("Successed Data", data);
+        
         return data;
     }
     else {

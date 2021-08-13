@@ -1,0 +1,16 @@
+.account {
+    position: relative;
+}
+
+.account_main {
+
+    width: calc(100% - 171px);
+    position: absolute;
+    border: 2px solid red;
+    top: 50px;
+    left: 171px;
+    bottom: 0;
+    /* overflow: hidden; */
+    /* width: ;    */
+
+}
