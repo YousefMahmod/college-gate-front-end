@@ -1,0 +1,149 @@
+.courses {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px;
+
+}
+
+.course_button {
+
+    background-color: var(--bgLessDarkest);
+    padding: 10px;
+    width: calc((1366px - 171px - 50px) / 4);
+    height: 204px;
+    margin: 5px;
+}
+
+
+.create_course_button {
+
+    text-align: center;
+    cursor: pointer;
+    width: fit-content; 
+    margin: 0 auto; 
+    font-size: var(--f1);
+}
+
+.container_create_course_card {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: default;
+    
+}
+
+.create_course_card {
+
+    width: fit-content;
+    height: 250px;
+    position: fixed;
+    background-color: var(--bgLessDarkest);
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--f1);
+    z-index: 3;
+    
+}
+
+.create_course_card .create_course_header {
+
+    background-color: var(--bgDarkest);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    
+}
+
+.create_course_card .create_course_header img {
+
+    cursor: pointer;
+}
+
+.create_course_card form {
+
+    padding-top: 10px;
+    margin: 0 10px;
+    height: 100%;
+    text-align: left;
+    /* font-size: var(--f1); */
+}
+
+/* .create_course_card form label {
+
+    font-size: var(--f1);
+
+} */
+
+.create_course_card form .course_name_field {
+
+    /* font-size: var(--f1); */
+    margin-top: 16px;
+    width: 100%;
+    color: black;
+}
+
+.create_course_card form .submit_course {
+
+    /* font-size: var(--f1); */
+    padding: 10px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100px;
+    border-radius: 16px;
+    cursor: pointer;
+    
+}
+
+.create_course_card form .submit_course_active {
+
+    background-color: #0094FF;
+    pointer-events: visible;
+
+}
+
+.create_course_card form .submit_course_not_active {
+
+    background-color: #0094FF;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.course_button a {
+
+    text-decoration: none;
+}
+@media (max-width: 700px) {
+
+    .create_course_card {
+        font-size: var(--f2);
+    }
+
+    .create_course_card .create_course_header {
+
+        font-size: var(--f3);
+    }
+    .create_course_card form .submit_course {
+
+        width: 75px; 
+        
+    }
+
+    .create_course_card .create_course_header img {
+
+        width: 24px;
+        height: 24px;
+    }
+}

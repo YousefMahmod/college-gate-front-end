@@ -27,7 +27,7 @@ const AuthContextProvider = ({children}) => {
 
     } );
     const [signUpError, setSignUpError] = useState(false);
-    const [logInError, setLogInError] = useState(false);
+    const [logInError, setLogInError] = useState(null);
     const [token, setToken] = useState(() => {
         try {
             // Get from local storage by key
@@ -48,6 +48,12 @@ const AuthContextProvider = ({children}) => {
         
         setToken(null);
         setUser(null);
+        setLogInError(null);
+    }
+
+    const hadnlerLoginError = () => {
+
+        setLogInError(null);
     }
 
    
@@ -78,21 +84,70 @@ const AuthContextProvider = ({children}) => {
         return data;
     }
 
-    const logIn = async (userType, userInfo) => {
+    const logIn = (userType, userInfo) => {
 
-        const auth = await logInApi(userType, userInfo);
 
-        if(auth) {
+        logInApi(userType, userInfo).then(({data: auth, res}) => {
 
-            localStorage.setItem("user", JSON.stringify(auth.user));
-            setUser(auth.user);
+            if(res.ok){
 
-            localStorage.setItem("token", JSON.stringify(auth.token));
-            setToken(auth.token);
+                console.log(auth);
+                localStorage.setItem("user", JSON.stringify(auth.user));
+                setUser(auth.user);
+        
+                localStorage.setItem("token", JSON.stringify(auth.token));
+                setToken(auth.token);
+                
+                return;
+            }
+            else if(res.status === 401) {
+
+                setLogInError("incorrect email or password");
+                
+            }
+            else {
+                setLogInError(auth.message);
+                console.log(auth.message);
+            }
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+        
+        
+        // const {data: auth, res} = await logInApi(userType, userInfo);
+
+        // if(res.status !== 401){
+
+        //     console.log(auth);
+        //     localStorage.setItem("user", JSON.stringify(auth.user));
+        //     setUser(auth.user);
+    
+        //     localStorage.setItem("token", JSON.stringify(auth.token));
+        //     setToken(auth.token);
             
-            return;
-        }
-        setLogInError(true);
+        //     return;
+        // }
+        // else {
+
+        //     setLogInError(auth.message);
+
+        // }
+     
+        
+        
+
+        // if(auth) {
+
+        //     localStorage.setItem("user", JSON.stringify(auth.user));
+        //     setUser(auth.user);
+
+        //     localStorage.setItem("token", JSON.stringify(auth.token));
+        //     setToken(auth.token);
+            
+        //     return;
+        // }
+        // setLogInError(true);
         
     }
 
@@ -116,7 +171,7 @@ const AuthContextProvider = ({children}) => {
     }
   
     return ( 
-        <AuthContext.Provider value={{user, token, logIn, signUp, handlerSignOut}}>
+        <AuthContext.Provider value={{user, token, logInError, hadnlerLoginError, logIn, signUp, handlerSignOut}}>
             {children}
         </AuthContext.Provider>
     );

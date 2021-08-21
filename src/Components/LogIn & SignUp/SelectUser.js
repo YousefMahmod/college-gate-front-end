@@ -10,7 +10,7 @@ const SelectUser = ({userType, handleOnChange}) => {
     return ( 
         <div className={styles.radio_buttons_for_users}>
 
-            <div className={styles.radio_container}>
+            <div className={styles.radio_container} style={{margin:0}} >
 
                 <input 
                     type="radio" 
@@ -18,22 +18,23 @@ const SelectUser = ({userType, handleOnChange}) => {
                     value="student" 
                     onChange={(e) => handleOnChange(e)}
                     name="user"
-                    checked = {userType === "student" ? true : false}
+                    checked = {userType === "student"}
                 />
                 {/* <span className={styles.checkmark}></span> */}
-                <label  className={styles.radio_container}>student</label>
+                <label htmlFor="student" > student </label>
                 
 
             </div>
             
             <div className={styles.radio_container}>
+                
                 <input 
                     type="radio" 
                     id="professor" 
                     value="professor" 
                     onChange={(e) => handleOnChange(e)}
                     name="user"
-                    checked = {userType === "professor" ? true : false}
+                    checked = {userType === "professor"}
                 />
 
                 <label htmlFor="professor">professor</label>
@@ -49,7 +50,7 @@ const SelectUser = ({userType, handleOnChange}) => {
                     onChange={(e) => handleOnChange(e)}
                     // checked="checked"
                     name="user"
-                    checked = {userType === "department" ? true : false}
+                    checked = {userType === "department"}
                 />
 
                 <label htmlFor="department">department</label>

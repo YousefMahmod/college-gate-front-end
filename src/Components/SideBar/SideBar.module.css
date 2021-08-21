@@ -28,5 +28,42 @@
 }
 
 .sidebar a{
+
     text-decoration: none;
 }
+
+@media screen and (max-width: 700px) {
+
+    /* .sidebar {
+
+        display: none;
+    } */
+    .disable_sidebar {
+        display: none;
+    }
+    .active_sidebar {
+        display: flex;
+        position: fixed;
+        top: 50px;
+        bottom: 0px;
+        /* width: fit-content; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        margin: 0;
+        /* margin-bottom: 20px; */
+        width: 171px;
+        background-color: var(--bgLessDarkest);
+        text-align: center;
+        z-index: 1;
+    }
+}
+
+/* at zoom out */
+/* @media (min-width:1400px) {
+
+    .sidebar li a{
+        font-size: 40px;
+    }
+} */

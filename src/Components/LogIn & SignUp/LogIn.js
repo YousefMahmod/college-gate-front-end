@@ -5,41 +5,31 @@ import SelectUser from "./SelectUser";
 // import { useHistory } from "react-router-dom";
 
 const LogIn = ({userType}) => {
-    // const history = useHistory();
+    
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const {logIn} = useContext(AuthContext);
-
-    console.log("LogIn.js");
-    console.log(userType);
-    // history.push({pathname:'/login'});
-    // console.log(UserType);
-    // useEffect(() => {
-
-    //     let el = document.querySelector(".radio_container");
-    //     console.log(el);
-    //     // el.setAttribute("checked", "checked");
-
-    // }, []);
+    const {logInError} = useContext(AuthContext);
 
     const handleSubmit = (e) => {
 
         e.preventDefault();
 
         const userInfo = {email:username, password};
-        // console.log(userInfo);
+
         logIn(userType, userInfo);
         // dispatch({type:"LOGIN", userInfo, typeOfUser});
         setUsername("");
         setPassword("");
-        // history.replace({pathname:'/check-type'});
-        //don't forget to handle the path 
+        
+       
     };
-   
+    
     return (
 
         <form onSubmit={handleSubmit} >
 
+            {logInError && <div style={{color:"red"}}>{logInError}</div>}
             <input 
                 type="email" 
                 required 

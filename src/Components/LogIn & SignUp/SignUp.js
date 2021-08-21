@@ -62,7 +62,7 @@ const SignUp = ({userType}) => {
     }
   
     return ( 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className={styles.signUp}>
 
             <input 
                 type="text" 

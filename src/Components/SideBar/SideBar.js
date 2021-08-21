@@ -1,40 +1,38 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { ItemsOfSideBarContext } from "../../Contexts/ItemsOfSideBarContext";
 import ItemButton from "./ItemButton";
-import Profile from "../Profile/Profile";
-import { AuthContext } from "../../Contexts/AuthContext";
-import styles from './SideBar.module.css'
+// import Profile from "../Profile/Profile";
+// import { AuthContext } from "../../Contexts/AuthContext";
+import styles from "./SideBar.module.css";
 
-const SideBar = () => {
-   
-    const {listOfItems} = useContext(ItemsOfSideBarContext);
-    const location = useLocation();
-    const user = useContext(AuthContext);
+const SideBar = ({ showSidebar, handleSidebarListClicked }) => {
 
-    console.log(listOfItems);
-  
-    return (
-         
-        <div className={styles.sidebar}>
+	const { listOfItems } = useContext(ItemsOfSideBarContext);
+	const location = useLocation();
+	// const user = useContext(AuthContext);
+	let sidebarDisplayStyle = styles.disable_sidebar;
 
-            {/* <Profile user={user} /> */}
-            <ul>
-                {listOfItems.map((item) => (
+	if (showSidebar) {
+		sidebarDisplayStyle = styles.active_sidebar;
+	}
 
-                        <ItemButton 
-                            text={item.text} 
-                            link={item.link} 
-                            state= {location.pathname} 
-                            key={item.id} 
-                        />
-                    )
-                  
-                )}
-            </ul>
-            
-        </div>
-    );
-}
- 
+	return (
+		<div className={`${styles.sidebar} ${sidebarDisplayStyle}`}>
+			{/* <Profile user={user} /> */}
+			<ul>
+				{listOfItems.map(item => (
+					<ItemButton
+						text={item.text}
+						link={item.link}
+						state={location.pathname}
+						key={item.id}
+                        handleSidebarListClicked={handleSidebarListClicked}
+					/>
+				))}
+			</ul>
+		</div>
+	);
+};
+
 export default SideBar;
