@@ -1,4 +1,4 @@
-import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom"
+import { Link, Route, Switch, useLocation } from "react-router-dom"
 import LogIn from "./LogIn";
 import styles from './LoginAndSignUp.module.css'
 import SignUp from "./SignUp";
@@ -10,7 +10,6 @@ import { AuthContext } from "../../Contexts/AuthContext";
 
 const LogInAndSignUp = ({dispatch}) => {
 
-    const history = useHistory();
     const location = useLocation();
 
     let styleLogin = styles.not_active_button;
@@ -64,6 +63,7 @@ const LogInAndSignUp = ({dispatch}) => {
             <ul>
                 <li className={styleLogin} onClick={hadnlerLoginError}><Link to={LOGIN_LINK}>login</Link></li>
                 <li className={styleSignup}><Link to={SIGNUP_LINK}>signup</Link></li>
+          
             </ul>
 
         </div>

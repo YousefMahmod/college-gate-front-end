@@ -34,8 +34,8 @@ const Account = () => {
 					handleSidebarListClicked={handleSidebarListClicked}
 				/>
 
-				<div
-					className={styles.account_main}
+				<main
+					
 					onClick={() => {
 						
 						handleSidebarListClicked(true);
@@ -48,7 +48,7 @@ const Account = () => {
 
 						<Route path="/department" component={Employee} />
 					</Switch>
-				</div>
+				</main>
 			</ItemsOfSideBarContextProvider>
 		</div>
 	);

@@ -1,26 +1,40 @@
 import { useContext } from "react";
-import { Redirect, Route, Switch, useLocation } from "react-router-dom";
-import { PROFESSOR_MESSAGES_OVERVIEW_LINK } from "../../Constants";
-import CourseContextProvider from "../../Contexts/CourseContext";
+import {
+	Redirect,
+	Route,
+	Switch,
+	useLocation,
+	useRouteMatch,
+} from "react-router-dom";
+import {
+	PROFESSOR_COURSES_LINK,
+	PROFESSOR_MESSAGES_OVERVIEW_LINK,
+} from "../../Constants";
+import UserDataContextProvider from "../../Contexts/UserDataContext";
 import { ItemsOfSideBarContext } from "../../Contexts/ItemsOfSideBarContext";
+import Course from "../Courses/Course";
 
 const Professor = () => {
 	const { listOfItems } = useContext(ItemsOfSideBarContext);
 
 	const location = useLocation();
+	const match = useRouteMatch();
 
 	if (location.pathname === "/professor") {
 		return <Redirect to={PROFESSOR_MESSAGES_OVERVIEW_LINK} />;
 	}
 	return (
 		<Switch>
-			<CourseContextProvider>
+			<UserDataContextProvider>
 				{listOfItems.map(item => (
-					<Route path={item.link} key={item.id} >
-						<>{item.component}</>
+					<Route exact path={item.link} key={item.id}>
+						{item.component}
 					</Route>
 				))}
-			</CourseContextProvider>
+				<Route path={`${PROFESSOR_COURSES_LINK}/:id`}>
+					<Course isProfessor={true} />
+				</Route>
+			</UserDataContextProvider>
 		</Switch>
 	);
 };

@@ -10,6 +10,7 @@ export const DEPARTMENT_WARNINGS_LINK = "/department/warnings";
 
 export const LOGIN_LINK = "/auth/login";
 export const SIGNUP_LINK = "/auth/signup";
+export const NOT_FOUND = "*";
 
 //End points
 
@@ -18,6 +19,10 @@ const URL = "http://localhost:4000/api/v1";
 export const USER_END_POINT = `${URL}/user`;
 export const CREATE_COURSE_END_POINT = `${URL}/course/me`;
 export const GET_COURSES_END_POINT = `${URL}/course/all`;
+export const GET_COURSE_END_POINT = `${URL}/course`;
+export const CREATE_POST_END_POINT = `${URL}/announcement/me/course`;
+export const GET_LIST_OF_POSTS_END_POINT = `${URL}/announcement/course`;
+// export const CREATE_POST_END_POINT = `${URL}/announcement/me/course`;
 
 //Actions
 

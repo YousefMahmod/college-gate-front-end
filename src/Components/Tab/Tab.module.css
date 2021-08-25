@@ -1,0 +1,26 @@
+.tab {
+	padding: 10px;
+	width: calc(100% / 3);
+	text-align: center;
+}
+.tab:not(:last-child) {
+	margin-right: 5px;
+}
+.tab a {
+	text-decoration: none;
+	font-size: var(--f2);
+}
+.active_tab {
+	background-color: var(--bgDarkest);
+}
+.not_active_tab {
+	background-color: var(--bgLessDarkest);
+}
+
+@media (max-width: 680px) {
+	.tab a {
+		text-decoration: none;
+		font-size: 12px;
+		font-weight: bold;
+	}
+}

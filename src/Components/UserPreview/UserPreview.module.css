@@ -1,18 +1,30 @@
-
 .user_preview {
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    
+	width: fit-content;
+	display: flex;
+	margin-bottom: 20px;
+}
+.user_preview img {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
 }
 
 .user_preview div {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	font-size: var(--f2);
+	margin-left: 6px;
+}
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: var(--f3);
-    margin-left: 2px;
+@media (max-width: 680px) {
+	.user_preview img {
+		width: 50px;
+		height: 50px;
+		object-fit: cover;
+	}
 
+	.user_preview div {
+		font-size: var(--f3);
+	}
 }

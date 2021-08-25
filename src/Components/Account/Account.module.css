@@ -5,7 +5,7 @@
     /* z-index: 4; */
 }
 
-.account_main {
+main {
 
     padding-left: 171px;
     padding-top: 50px;
@@ -14,7 +14,7 @@
 
 @media screen and (max-width: 700px) {
 
-    .account_main {
+    main {
 
         padding-left: 0;
     }

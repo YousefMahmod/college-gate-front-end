@@ -1,14 +1,24 @@
 .post {
-   
-    margin: 20px auto;
-    background-color: var(--bgLessDarkest);
-    padding: 10px;
-    text-align: start;
+	/* position: relative; */
+	margin: 10px 0;
+	background-color: var(--bgLessDarkest);
+	padding: 10px;
+	text-align: start;
+	/* max-height: 300px; */
+	overflow: hidden;
+	width: 100%;
+	/* margin-left: 15px; */
+	/* width: calc(100% - 5px); */
 }
 
-.post::before {
-    width: 10px;
-    height: 100%;
-    background-color: white;
-   
-}
+/* .post::before {
+	content: "";
+	display: block;
+	/* position: relative; 
+	margin-left: -20px;
+	width: 10px;
+	height: 109px;
+	background-color: white;
+	/* left: -15px;
+	top: 0; 
+} */

@@ -1,5 +1,38 @@
-/* .course_container {
-
-    display: flex;
-
-} */
+.course_container {
+	display: flex;
+	flex-direction: column;
+	/* max-width: 660px; */
+	max-width: 570px;
+	/* min-width: 330px; */
+	margin: 10px auto;
+	justify-content: center;
+	align-items: center;
+	/* z-index: -3; */
+}
+.course_container ul {
+	list-style-type: none;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0;
+	margin-top: 6px;
+}
+/* medium */
+@media (max-width: 850px) and (min-width: 700px) {
+	.course_container {
+		max-width: 520px;
+	}
+}
+/* small */
+@media (max-width: 680px) {
+	.course_container {
+		max-width: 420px;
+	}
+}
+/* very small */
+@media (max-width: 440px) {
+	.course_container {
+		max-width: 320px;
+	}
+}

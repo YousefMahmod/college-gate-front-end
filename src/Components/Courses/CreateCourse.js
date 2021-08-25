@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { CourseContext } from "../../Contexts/CourseContext";
+import { UserDataContext } from "../../Contexts/UserDataContext";
 // import styles from './CreateCourse.module.css';
 import styles from "./Courses.module.css";
 
@@ -7,10 +7,11 @@ const CreateCourse = ({ closeCreateCourseCard }) => {
 	// const {dispatch} = useContext(CourseContext);
 
 	//const {addCourse, fetchError, isPending, setIsPending} = useContext(CourseContext);
-	const { addCourse } = useContext(CourseContext);
+	const { addCourse } = useContext(UserDataContext);
 	const [waitCreateCourse, setWaitCreateCourse] = useState(false);
 	const [createCourseError, setCreateCourseError] = useState("");
 
+	let submitCourseDisplay = "submit_active_button";
 	// console.log("isPending", isPending);
 	// console.log("fetchError", fetchError);
 
@@ -32,12 +33,11 @@ const CreateCourse = ({ closeCreateCourseCard }) => {
 		setWaitCreateCourse(true);
 
 		addCourse(course).then(({ data, res }) => {
+			setWaitCreateCourse(false);
 			if (res.ok) {
-				setWaitCreateCourse(false);
 				setCreateCourseError("");
 				closeCreateCourseCard();
 			} else {
-				setWaitCreateCourse(false);
 				setCreateCourseError(data.message);
 			}
 		});
@@ -45,14 +45,16 @@ const CreateCourse = ({ closeCreateCourseCard }) => {
 		console.log("I can't wait");
 	};
 
-	const handleCloseCourseCard = close => {
-		console.log("close", close);
-		console.log("handleCloseCourseCard called");
-		if (!waitCreateCourse && close) {
+	const handleCloseCourseCard = () => {
+		if (!waitCreateCourse) {
 			closeCreateCourseCard();
 		}
 		// closeCreateCourseCard();
 	};
+
+	if (waitCreateCourse) {
+		submitCourseDisplay = "submit_not_active_button";
+	}
 
 	// if(!isPending){
 
@@ -61,9 +63,10 @@ const CreateCourse = ({ closeCreateCourseCard }) => {
 
 	return (
 		<div
-			className={` ${styles.container_create_course_card}`}
+			className={`${styles.container_create_course_card} center_flex`}
 			// onClick={() => handleCloseCourseCard(true)}
 		>
+			<div className={styles.overLay} onClick={handleCloseCourseCard}></div>
 			<div
 				className={` ${styles.create_course_card}`}
 				// onClick={() => handleCloseCourseCard(false)}
@@ -73,7 +76,7 @@ const CreateCourse = ({ closeCreateCourseCard }) => {
 					<img
 						src="/Icons/closeButton.svg"
 						alt="close"
-						onClick={() => handleCloseCourseCard(true)}
+						onClick={handleCloseCourseCard}
 					/>
 				</div>
 				<form onSubmit={e => handleSubmit(e)}>
@@ -88,10 +91,7 @@ const CreateCourse = ({ closeCreateCourseCard }) => {
 						onChange={e => setName(e.target.value)}
 					/>
 
-					<br />
-					<br />
-
-					{!waitCreateCourse && (
+					{/* {!waitCreateCourse && (
 						<input
 							type="submit"
 							value="Create"
@@ -104,7 +104,14 @@ const CreateCourse = ({ closeCreateCourseCard }) => {
 							value="Create"
 							className={`${styles.submit_course_not_active} ${styles.submit_course}`}
 						/>
-					)}
+					)} */}
+					<div style={{ textAlign: "right", marginTop: "10px" }}>
+						<input
+							type="submit"
+							value="Create"
+							className={`${submitCourseDisplay} ${styles.submit_course}`}
+						/>
+					</div>
 				</form>
 
 				{createCourseError && (

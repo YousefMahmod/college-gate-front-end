@@ -1,6 +1,9 @@
 import {
 	CREATE_COURSE_END_POINT,
+	CREATE_POST_END_POINT,
 	GET_COURSES_END_POINT,
+	GET_COURSE_END_POINT,
+	GET_LIST_OF_POSTS_END_POINT,
 	USER_END_POINT,
 } from "../Constants";
 
@@ -83,3 +86,65 @@ export const fetchCourses = async abort => {
 	return { data, res };
 };
 //get specefic course
+export const fetchCourse = async (abort, id) => {
+	const token = localStorage.getItem("token");
+
+	console.log("Courseid", id);
+	console.log("token", token);
+
+	const res = await fetch(`${GET_COURSE_END_POINT}/${id}`, {
+		signal: abort.signal,
+		method: "GET",
+		headers: {
+			"content-type": "application/json",
+			Authorization: `Bearer ${JSON.parse(token)}`,
+		},
+	});
+	const data = await res.json();
+
+	return { data, res };
+};
+
+export const createPost = async ([content, id, abort]) => {
+	const token = localStorage.getItem("token");
+
+	console.log("contentPost", content);
+	console.log("courseId", id);
+	// console.log("CourseName", name);
+	// console.log("token", token);
+
+	const res = await fetch(`${CREATE_POST_END_POINT}/${id}`, {
+		signal: abort.signal,
+		method: "POST",
+		headers: {
+			"content-type": "application/json",
+			Authorization: `Bearer ${JSON.parse(token)}`,
+		},
+		body: JSON.stringify(content),
+	});
+	const data = await res.json();
+
+	return { data, res };
+};
+
+export const fetchListOfPosts = async ([id, offset, abort]) => {
+	const token = localStorage.getItem("token");
+
+	console.log("Courseid", id);
+	console.log("offset", offset);
+
+	const res = await fetch(
+		`${GET_LIST_OF_POSTS_END_POINT}/${id}?offset=${offset}&limit=${4}`,
+		{
+			signal: abort.signal,
+			method: "GET",
+			headers: {
+				"content-type": "application/json",
+				Authorization: `Bearer ${JSON.parse(token)}`,
+			},
+		}
+	);
+	const data = await res.json();
+
+	return { data, res };
+};
