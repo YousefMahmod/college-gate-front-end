@@ -11,6 +11,8 @@
   - [Running for front-end](#running-for-front-end)
   - [Installation for back-end](#installation-for-back-end)
   - [Running for back-end](#running-for-back-end)
+- [Screen Shots](#screen-shots)
+- [Video](#video)
 - [File Structure](#file-structure)
 - [License](#license)
 
@@ -91,6 +93,41 @@ $ npm install
 $ npm run-script run
 $ npm run-script dev
 ```
+## Screen Shots
+![](images/Login.png)
+<hr />
+
+![](images/SignUp.png)
+
+<hr />
+
+![](images/Courses.png)
+
+<hr />
+
+![](images/Course.png)
+
+<hr />
+
+![](images/Createcourse.png)
+
+<hr />
+
+![](images/EnrollCourse.png)
+
+<hr />
+
+![](images/ShowSideBar.PNG)
+
+<hr />
+
+![](images/SmallScreen.PNG)
+
+<hr />
+
+## Video
+- [Player](https://drive.google.com/file/d/1OQqD1L4pD9Ldq4rhuCvlOjnx0AO4MM-M/view?usp=sharing)
+
 ## File Structure
                                     
     college-gate-front-end
