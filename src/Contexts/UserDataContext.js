@@ -249,7 +249,7 @@ const UserDataContextProvider = ({ children }) => {
 				console.log("res", res);
 
 				if (res.ok) {
-					setPosts([...posts, data]);
+					setPosts([data, ...posts]);
 
 					return { data, res };
 				}

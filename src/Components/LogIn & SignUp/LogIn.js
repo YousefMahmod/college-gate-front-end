@@ -23,7 +23,6 @@ const LogIn = ({ userType }) => {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			{logInError && <div style={{ color: "red" }}>{logInError}</div>}
 			<input
 				type="email"
 				required
@@ -53,6 +52,9 @@ const LogIn = ({ userType }) => {
 				// className={styles.login_signup_button}
 				className={`submit_button ${styles.login_signup_button}`}
 			/>
+			{logInError && (
+				<p style={{ color: "red", marginTop: "8px" }}>{logInError}</p>
+			)}
 		</form>
 	);
 };

@@ -1,63 +1,59 @@
 .sidebar {
-    position: fixed;
-    top: 50px;
-    bottom: 0px;
-    /* width: fit-content; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    margin: 0;
-    /* margin-bottom: 20px; */
-    width: 171px;
-    background-color: var(--bgLessDarkest);
-    text-align: center;
-    z-index: 1;
+	position: fixed;
+	top: 50px;
+	bottom: 0px;
+	/* width: fit-content; */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+	margin: 0;
+	/* margin-bottom: 20px; */
+	width: 171px;
+	background-color: var(--bgLessDarkest);
+	text-align: center;
+	z-index: 1;
 }
 
 .sidebar ul {
-
-    padding: 0;
-    list-style-type: none;
-    margin-top: 15px;
-    
+	padding: 0;
+	list-style-type: none;
+	margin-top: 15px;
 }
 
-.sidebar li{
-    margin-bottom: 15px;
+.sidebar li {
+	margin-bottom: 15px;
 }
 
-.sidebar a{
-
-    text-decoration: none;
+.sidebar a {
+	text-decoration: none;
 }
 
-@media screen and (max-width: 700px) {
-
-    /* .sidebar {
+@media screen and (max-width: 890px) {
+	/* .sidebar {
 
         display: none;
     } */
-    .disable_sidebar {
-        display: none;
-    }
-    .active_sidebar {
-        display: flex;
-        position: fixed;
-        top: 50px;
-        bottom: 0px;
-        /* width: fit-content; */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        margin: 0;
-        /* margin-bottom: 20px; */
-        width: 171px;
-        background-color: var(--bgLessDarkest);
-        text-align: center;
-        z-index: 1;
-    }
+	.disable_sidebar {
+		display: none;
+	}
+	.active_sidebar {
+		display: flex;
+		position: fixed;
+		top: 50px;
+		bottom: 0px;
+		/* width: fit-content; */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 10px;
+		margin: 0;
+		/* margin-bottom: 20px; */
+		width: 171px;
+		background-color: var(--bgLessDarkest);
+		text-align: center;
+		z-index: 1;
+	}
 }
 
 /* at zoom out */

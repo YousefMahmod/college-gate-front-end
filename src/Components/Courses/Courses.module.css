@@ -52,6 +52,7 @@
 	bottom: 0;
 	right: 0;
 	z-index: 3;
+	padding: 10px;
 }
 
 .overLay {
@@ -100,7 +101,7 @@
 }
 
 .create_course_card form .course_name_field {
-	margin-top: 16px;
+	margin-top: 10px;
 	width: 100%;
 	color: black;
 	padding: 5px;
@@ -145,5 +146,17 @@
 	.create_course_card .create_course_header img {
 		width: 24px;
 		height: 24px;
+	}
+} */
+/* @media (max-width: 490px) {
+	.create_course_card form .course_name_field {
+		font-size: 14px;
+		padding: 2px;
+	}
+	.create_course_card form {
+		font-size: 14px;
+	}
+	.create_course_card .create_course_header h2 {
+		font-size: 16px;
 	}
 } */

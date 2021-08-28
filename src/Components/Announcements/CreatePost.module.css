@@ -18,6 +18,7 @@
 	/* width: 100%; */
 	font-size: var(--f1);
 	/* height: 143px; */
+	border: none;
 	height: 93px;
 	resize: none;
 }
@@ -32,7 +33,7 @@
 	width: 90px;
 } */
 
-@media (max-width: 680px) {
+/* @media (max-width: 680px) {
 	.create_post textarea {
 		font-size: var(--f2);
 	}
@@ -40,4 +41,4 @@
 		font-size: var(--f2);
 		width: 80px;
 	}
-}
+} */

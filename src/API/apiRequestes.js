@@ -17,12 +17,8 @@ export const signUpApi = async (userType, userInfo) => {
 		body: JSON.stringify(userInfo),
 	});
 
-	if (res.ok) {
-		const data = await res.json();
-		return data;
-	}
-
-	return null;
+	const data = await res.json();
+	return { data, res };
 };
 
 export const logInApi = async (userType, userInfo) => {

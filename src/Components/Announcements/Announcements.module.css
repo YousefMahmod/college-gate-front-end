@@ -1,6 +1,10 @@
 .posts_container {
-	margin-top: 10px;
+	/* margin-top: 10px; */
 	width: 100%;
+}
+
+.posts_container div:not(:last-child) {
+	margin-bottom: 10px;
 }
 /* .bar {
     

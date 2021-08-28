@@ -14,7 +14,8 @@ const LogInAndSignUp = ({ dispatch }) => {
 	let styleLogin = styles.not_active_button;
 	let styleSignup = styles.not_active_button;
 
-	const { hadnlerLoginError } = useContext(AuthContext);
+	const { hadnleLoginError, hadnleSignUpSuccessful, hadnleSignUpError } =
+		useContext(AuthContext);
 
 	const [userType, setUserType] = useState(() => {
 		const data = localStorage.getItem("UserType");
@@ -25,6 +26,12 @@ const LogInAndSignUp = ({ dispatch }) => {
 		localStorage.setItem("UserType", e.target.value);
 		setUserType(e.target.value);
 	};
+
+	const handleSignUpStates = () => {
+		hadnleSignUpSuccessful();
+		hadnleSignUpError();
+	};
+
 	if (location.pathname.includes(SIGNUP_LINK)) {
 		styleSignup = styles.active_button;
 	} else {
@@ -32,7 +39,7 @@ const LogInAndSignUp = ({ dispatch }) => {
 	}
 
 	return (
-		<div className="center_flex" style={{ height: "100%" }}>
+		<div className="center_flex" style={{ height: "100%", padding: "10px" }}>
 			<div className={styles.login_signup}>
 				<RedirectHandler />
 
@@ -51,10 +58,10 @@ const LogInAndSignUp = ({ dispatch }) => {
 				</Switch>
 
 				<ul>
-					<li className={styleLogin} onClick={hadnlerLoginError}>
+					<li className={styleLogin} onClick={hadnleLoginError}>
 						<Link to={LOGIN_LINK}>login</Link>
 					</li>
-					<li className={styleSignup}>
+					<li className={styleSignup} onClick={handleSignUpStates}>
 						<Link to={SIGNUP_LINK}>signup</Link>
 					</li>
 				</ul>

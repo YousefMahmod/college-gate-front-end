@@ -79,7 +79,10 @@ const Announcements = ({ isProfessor }) => {
 	// });
 
 	return (
-		<div className={styles.posts_container}>
+		<div
+			className={styles.posts_container}
+			style={isProfessor ? { marginTop: "10px" } : { marginTop: "0px" }}
+		>
 			{isProfessor && <CreatePost />}
 
 			{/* {waitPosts && <div>Loading....</div>} */}

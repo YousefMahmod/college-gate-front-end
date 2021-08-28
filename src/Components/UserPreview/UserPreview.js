@@ -24,7 +24,7 @@ const UserPreview = ({ user, showOtherPreviewUser, course, date }) => {
 					{user.type === "Professor" && <span>Prof.{user.name}</span>}
 					{user.type !== "Professor" && <span>{user.name}</span>}
 					{user.type !== "Department" && <span>{course.name} course</span>}
-					<span>{date}</span>
+					<span className={styles.date}>{date}</span>
 				</div>
 			</>
 			// </div>

@@ -7,12 +7,12 @@ import styles from "./Header.module.css";
 const Header = ({ handleSidebarListClicked }) => {
 	const history = useHistory();
 
-	const { handlerSignOut } = useContext(AuthContext);
+	const { handleSignOut } = useContext(AuthContext);
 
 	const signOut = () => {
 		history.replace({ pathname: LOGIN_LINK });
 
-		handlerSignOut();
+		handleSignOut();
 	};
 
 	return (

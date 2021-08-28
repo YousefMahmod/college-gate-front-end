@@ -5,6 +5,7 @@ const CoursePreview = ({ course, isProfessor }) => {
 	const showProfessorCoursePreview = () => {
 		return (
 			<>
+				<img src="https://picsum.photos/1200/600" alt="prof" />
 				<p> {course.name} course</p>
 				<p> Key: {course.key} </p>
 			</>
@@ -26,7 +27,14 @@ const CoursePreview = ({ course, isProfessor }) => {
 
 	return (
 		<div className={styles.course_preview}>
-			{isProfessor ? showProfessorCoursePreview() : showStudentCoursePreview()}
+			{/* {isProfessor ? showProfessorCoursePreview() : showStudentCoursePreview()} */}
+			<img src="https://picsum.photos/1200/600" alt="prof" />
+
+			<div>
+				{!isProfessor && <span>Prof.{course.professor.name}</span>}
+				<span>{course.name} course</span>
+				{isProfessor && <span>Key: {course.key}</span>}
+			</div>
 		</div>
 	);
 };

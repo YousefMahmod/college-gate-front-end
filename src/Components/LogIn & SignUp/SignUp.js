@@ -13,9 +13,10 @@ const SignUp = ({ userType }) => {
 	const [passwordConfirm, setPasswordConfirm] = useState("");
 	const [departmentState, setDepartment] = useState("");
 
-	const { signUp } = useContext(AuthContext);
-
-	console.log("userType", userType);
+	const { signUp, signUpSuccessful, signUpError, handleSignUpSuccessful } =
+		useContext(AuthContext);
+	console.log("signUpSuccessful", signUpSuccessful);
+	console.log(signUpError);
 
 	const handleSubmit = e => {
 		let userInfo = {
@@ -141,6 +142,14 @@ const SignUp = ({ userType }) => {
 				value="signup"
 				className={`submit_button ${styles.login_signup_button}`}
 			/>
+			{signUpSuccessful && (
+				<p style={{ color: "green", marginTop: "8px" }}>
+					Sign Up Successful login now
+				</p>
+			)}
+			{signUpError && (
+				<p style={{ color: "red", marginTop: "8px" }}>{signUpError}</p>
+			)}
 		</form>
 	);
 };

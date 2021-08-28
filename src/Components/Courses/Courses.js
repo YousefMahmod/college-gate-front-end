@@ -27,57 +27,43 @@ const Courses = ({ isProfessor }) => {
 		return () => abortFetch.abort();
 	}, []);
 
-	const showProfessorCourses = () => {
-		if (courses) {
-			return (
-				<>
-					{courses.map(course => (
-						<CourseButton
-							isProfessor={true}
-							course={course}
-							isCreateOrEnrollButton={false}
-							key={course.id}
-						/>
-					))}
-				</>
-			);
-		}
-	};
-
-	const showStudentCourses = () => {
-		if (courses) {
-			return (
-				<>
-					{courses.map(course => (
-						<CourseButton
-							isProfessor={false}
-							course={course}
-							isCreateOrEnrollButton={false}
-							key={course.id}
-						/>
-					))}
-				</>
-			);
-		}
-	};
-
 	return (
-		<div className={styles.courses}>
-			{waitCourses && <div> Loading .....</div>}
-			{isProfessor ? showProfessorCourses() : showStudentCourses()}
-
-			<CourseButton
-				isProfessor={isProfessor}
-				isCreateOrEnrollButton={true}
-				popupCreateOrEnrollCourseWindow={popupCreateOrEnrollCourseWindow}
-			/>
-
-			{showCreateOrEnrollCourseCard && (
-				<CreateOrEnrollCourse
-					isPrfoessor={isProfessor}
-					closeCreateOrEnrollCourseCard={closeCreateOrEnrollCourseCard}
+		<div
+			style={{
+				display: "flex",
+				flexWrap: "wrap",
+				width: "100%",
+				height: "100%",
+			}}
+		>
+			<div className={styles.courses}>
+				{waitCourses && <div> Loading .....</div>}
+				{/* {isProfessor ? showProfessorCourses() : showStudentCourses()} */}
+				{courses && (
+					<>
+						{courses.map(course => (
+							<CourseButton
+								isProfessor={isProfessor}
+								course={course}
+								isCreateOrEnrollButton={false}
+								key={course.id}
+							/>
+						))}{" "}
+					</>
+				)}
+				<CourseButton
+					isProfessor={isProfessor}
+					isCreateOrEnrollButton={true}
+					popupCreateOrEnrollCourseWindow={popupCreateOrEnrollCourseWindow}
 				/>
-			)}
+
+				{showCreateOrEnrollCourseCard && (
+					<CreateOrEnrollCourse
+						isPrfoessor={isProfessor}
+						closeCreateOrEnrollCourseCard={closeCreateOrEnrollCourseCard}
+					/>
+				)}
+			</div>
 		</div>
 	);
 };

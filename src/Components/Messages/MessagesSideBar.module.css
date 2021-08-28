@@ -1,6 +1,7 @@
 .messages_sidebar {
 	background-color: var(--bgDarkest);
-	/* width: 28%; */
+	width: fit-content;
+	/* width: 100%; */
 	font-size: var(--f2);
 	padding: 10px;
 	margin-right: 10px;
@@ -21,4 +22,10 @@
 
 .messages_sidebar a {
 	text-decoration: none;
+}
+
+@media (max-width: 490px) {
+	.messages_sidebar a {
+		font-size: 14px;
+	}
 }

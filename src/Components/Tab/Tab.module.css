@@ -1,7 +1,6 @@
 .tab {
 	padding: 10px;
 	width: calc(100% / 3);
-	text-align: center;
 }
 .tab:not(:last-child) {
 	margin-right: 5px;
@@ -17,10 +16,21 @@
 	background-color: var(--bgLessDarkest);
 }
 
-@media (max-width: 680px) {
-	.tab a {
-		text-decoration: none;
-		font-size: 12px;
-		font-weight: bold;
+.tab a img {
+	width: 40px;
+	height: 40px;
+	margin-right: 6px;
+}
+
+@media (max-width: 580px) {
+	.tab a span {
+		display: none;
 	}
 }
+
+/* @media (max-width: 490px) {
+	.tab a {
+		text-decoration: none;
+		font-size: 14px;
+	}
+} */
