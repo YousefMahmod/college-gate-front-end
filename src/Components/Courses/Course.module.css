@@ -9,7 +9,7 @@
 	align-items: center;
 	/* z-index: -3; */
 }
-.course_container ul {
+.course_container .course_tabs {
 	list-style-type: none;
 	display: flex;
 	width: 100%;

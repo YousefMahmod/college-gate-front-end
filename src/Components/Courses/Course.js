@@ -21,7 +21,8 @@ const Course = ({ isProfessor }) => {
 	} = useContext(UserDataContext);
 
 	const params = useParams();
-
+	console.log(course);
+	console.log(courseTabs);
 	useEffect(() => {
 		if (courses.length !== 0) {
 			let course = courses.find(course => {
@@ -57,7 +58,7 @@ const Course = ({ isProfessor }) => {
 				<div style={{ width: "100%" }}>
 					<CoverCourse isProfessor={isProfessor} />
 
-					<ul>
+					<ul className={styles.course_tabs}>
 						{courseTabs.map(item => (
 							<Tab item={item} key={item.id} />
 						))}

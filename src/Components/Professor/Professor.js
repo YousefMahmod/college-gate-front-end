@@ -26,14 +26,15 @@ const Professor = () => {
 	return (
 		<Switch>
 			<UserDataContextProvider>
+				<Route path={`${PROFESSOR_COURSES_LINK}/:id`}>
+					<Course isProfessor={true} />
+				</Route>
+
 				{listOfItems.map(item => (
 					<Route exact path={item.link} key={item.id}>
 						{item.component}
 					</Route>
 				))}
-				<Route path={`${PROFESSOR_COURSES_LINK}/:id`}>
-					<Course isProfessor={true} />
-				</Route>
 			</UserDataContextProvider>
 		</Switch>
 	);

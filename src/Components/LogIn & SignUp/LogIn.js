@@ -1,64 +1,60 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Contexts/AuthContext";
-import styles from './LoginAndSignUp.module.css';
+import styles from "./LoginAndSignUp.module.css";
 import SelectUser from "./SelectUser";
 // import { useHistory } from "react-router-dom";
 
-const LogIn = ({userType}) => {
-    
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const {logIn} = useContext(AuthContext);
-    const {logInError} = useContext(AuthContext);
+const LogIn = ({ userType }) => {
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const { logIn } = useContext(AuthContext);
+	const { logInError } = useContext(AuthContext);
 
-    const handleSubmit = (e) => {
+	const handleSubmit = e => {
+		e.preventDefault();
 
-        e.preventDefault();
+		const userInfo = { email: username, password };
 
-        const userInfo = {email:username, password};
+		logIn(userType, userInfo);
+		// dispatch({type:"LOGIN", userInfo, typeOfUser});
+		setUsername("");
+		setPassword("");
+	};
 
-        logIn(userType, userInfo);
-        // dispatch({type:"LOGIN", userInfo, typeOfUser});
-        setUsername("");
-        setPassword("");
-        
-       
-    };
-    
-    return (
+	return (
+		<form onSubmit={handleSubmit}>
+			{logInError && <div style={{ color: "red" }}>{logInError}</div>}
+			<input
+				type="email"
+				required
+				id="email"
+				value={username}
+				onChange={e => setUsername(e.target.value)}
+				placeholder="Email"
+			/>
 
-        <form onSubmit={handleSubmit} >
+			<br />
+			<br />
 
-            {logInError && <div style={{color:"red"}}>{logInError}</div>}
-            <input 
-                type="email" 
-                required 
-                id="email" 
-                value={username}
-                onChange={e => setUsername(e.target.value)}
-                placeholder="Email"
-            />
+			<input
+				type="password"
+				required
+				id="password"
+				value={password}
+				onChange={e => setPassword(e.target.value)}
+				placeholder="Password"
+			/>
+			<br />
+			<br />
 
-            <br />
-            <br />
+			<input
+				type="submit"
+				value="log in"
+				// className={styles.login_signup_button}
+				className={`submit_button ${styles.login_signup_button}`}
+			/>
+		</form>
+	);
+};
 
-            <input 
-                type="password" 
-                required 
-                id="password" 
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                placeholder="Password"
-            
-            />
-            <br />
-            <br />
-
-            <input type="submit" value="log in" className={styles.login_signup_button}/>
-
-        </form> 
-        
-    );
-}
- 
 export default LogIn;

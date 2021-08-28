@@ -11,6 +11,11 @@
 	/* width: calc(100% - 5px); */
 }
 
+.post .post_user_preview {
+	width: fit-content;
+	margin-bottom: 10px;
+}
+
 /* .post::before {
 	content: "";
 	display: block;

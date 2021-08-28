@@ -1,0 +1,24 @@
+.messages_sidebar {
+	background-color: var(--bgDarkest);
+	/* width: 28%; */
+	font-size: var(--f2);
+	padding: 10px;
+	margin-right: 10px;
+	height: fit-content;
+	position: sticky;
+}
+
+.messages_sidebar ul {
+	padding: 0;
+	list-style-type: none;
+	margin-top: 15px;
+	text-align: center;
+}
+
+.messages_sidebar li {
+	margin-bottom: 15px;
+}
+
+.messages_sidebar a {
+	text-decoration: none;
+}

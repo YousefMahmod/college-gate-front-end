@@ -5,7 +5,7 @@ import CreatePost from "./CreatePost";
 import Post from "./Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const Announcements = () => {
+const Announcements = ({ isProfessor }) => {
 	let {
 		posts,
 		waitPosts,
@@ -80,7 +80,7 @@ const Announcements = () => {
 
 	return (
 		<div className={styles.posts_container}>
-			<CreatePost />
+			{isProfessor && <CreatePost />}
 
 			{/* {waitPosts && <div>Loading....</div>} */}
 

@@ -1,25 +1,14 @@
 .course_preview {
 	display: flex;
+	flex-direction: column;
 	overflow: hidden;
-	align-items: center;
+	align-items: flex-start;
 	width: fit-content;
-	font-size: var(--f1);
+	font-size: var(--f2);
+	margin-left: 10px;
+	margin-bottom: 10px;
 }
 
-.course_preview img {
-	width: 50px;
-	height: 50px;
-	object-fit: cover;
-	margin-right: 10px;
-	/* position: absolute; */
-}
-/* .course_preview .course_content {
-	background-color: var(--bgLessDarkest);
-	padding: 5px;
-} */
-.course_preview p {
-	margin-bottom: 8px;
-}
 .course_preview p:not(:last-child) {
 	margin-bottom: 8px;
 }

@@ -18,19 +18,19 @@
 	/* width: 100%; */
 	font-size: var(--f1);
 	/* height: 143px; */
-	height: 93px; 
+	height: 93px;
 	resize: none;
 }
 
-.create_post form input {
+/* .create_post form input {
 	padding: 10px;
 	background-color: #0094ff;
 	cursor: pointer;
 	border: none;
 	font-size: var(--f1);
-	/* width: 100px; */
+	/* width: 100px; 
 	width: 90px;
-}
+} */
 
 @media (max-width: 680px) {
 	.create_post textarea {

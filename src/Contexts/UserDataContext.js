@@ -2,15 +2,22 @@ import { createContext, useContext, useReducer, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
 	createCourse,
+	createMessage,
 	createPost,
+	enrollCourse,
 	fetchCourse,
 	fetchCourses,
 	fetchListOfPosts,
+	fetchListOfStudents,
 } from "../API/apiRequestes";
-import Announcements from "../Components/Post/Announcements";
-import { PROFESSOR_COURSES_LINK } from "../Constants";
+import CreateMessage from "../Components/Messages/CreateMessage";
+import Messages from "../Components/Messages/Messages";
+import MessagesContainer from "../Components/Messages/MessagesContainer";
+import Announcements from "../Components/Announcements/Announcements";
+import { PROFESSOR_COURSES_LINK, STUDENT_COURSES_LINK } from "../Constants";
 import { courseReducer } from "../Reducers/CourseReducer";
 import { AuthContext } from "./AuthContext";
+import MessageContextProvider from "./MessagesContext";
 
 export const UserDataContext = createContext();
 
@@ -22,76 +29,112 @@ const UserDataContextProvider = ({ children }) => {
 
 	// const [course, dispatch] = useReducer(courseReducer, {});
 	//courses content
+
+	const { user } = useContext(AuthContext);
+	const location = useLocation();
+
+	//##################### Course States #######################
 	const [course, setCourse] = useState(null);
 	const [waitCourse, setWaitCourse] = useState(true);
 	const [courseNotFound, setCourseNotFound] = useState(false);
 	const [courses, setCourses] = useState([]);
 	const [waitCourses, setWaitCourses] = useState(true);
 
-	//posts content
-	// const [post, setPost] = useState(null);
+	//##################### Post States #######################
 	const [posts, setPosts] = useState([]);
 	const [waitPosts, setWaitPosts] = useState(true);
 	const [hasMore, setHasMore] = useState(true);
 
-	console.log("posts state", posts);
-	console.log("waitPosts state", waitPosts);
+	//##################### Message States #######################
 
-	const { user } = useContext(AuthContext);
+	//##################### StudentList States #######################
+	const [students, setStudents] = useState([]);
+	const [waitStudentList, setWaitStudentList] = useState(true);
+	// const [finishSendingMessage, setFinishSendingMessage] = useState(false);
 
-	const location = useLocation();
-
+	//##################### Variables #######################
 	let courseTabs = {};
+	// let messageSidebarItems = [];
+	let relativePath = "";
+	let tabsTextList = [];
+	const isProfessor = user.type === "Professor" ? true : false;
 
-	if (user.type === "Professor" && course) {
-		courseTabs = [
-			{
-				text: "Announcements",
-				link: `${PROFESSOR_COURSES_LINK}/${course.id}/announcements`,
-				path: [
-					`${PROFESSOR_COURSES_LINK}/${course.id}`,
-					`${PROFESSOR_COURSES_LINK}/${course.id}/announcements`,
-				],
-				id: 1,
-				isActive:
-					location.pathname.includes("announcements") ||
-					location.pathname === `${PROFESSOR_COURSES_LINK}/${course.id}`,
-				component: <Announcements />,
-			},
-			{
-				text: "Quizzes",
-				link: `${PROFESSOR_COURSES_LINK}/${course.id}/quizzes`,
-				path: `${PROFESSOR_COURSES_LINK}/${course.id}/quizzes`,
-				id: 2,
-				isActive: location.pathname.includes("quizzes"),
-			},
-			{
-				text: "Messages",
-				link: `${PROFESSOR_COURSES_LINK}/${course.id}/messages`,
-				path: `${PROFESSOR_COURSES_LINK}/${course.id}/messages`,
-				id: 3,
-				isActive: location.pathname.includes("messages"),
-			},
-		];
+	if (isProfessor && course) {
+		relativePath = `${PROFESSOR_COURSES_LINK}/${course.id}`;
+		tabsTextList = ["Announcements", "Quizzes"];
 	} else if (course) {
+		relativePath = `${STUDENT_COURSES_LINK}/${course.id}`;
+		tabsTextList = ["Feed", "Grades"];
+	}
+
+	if (course) {
+		// messageSidebarItems = [
+		// 	{
+		// 		id: 1,
+		// 		text: "Received",
+		// 		link: `${relativePath}/messages/recieved`,
+		// 		path: [`${relativePath}/messages`, `${relativePath}/messages/recieved`],
+		// 		component: <MessagesContainer />,
+		// 	},
+		// 	{
+		// 		id: 2,
+		// 		text: "Sent",
+		// 		link: `${relativePath}/messages/sent`,
+		// 		path: `${relativePath}/messages/sent`,
+		// 		component: <MessagesContainer />,
+		// 	},
+		// 	{
+		// 		id: 3,
+		// 		text: "Send a message",
+		// 		link: `${relativePath}/messages/sendmessage`,
+		// 		path: `${relativePath}/messages/sendmessage`,
+		// 		component: <CreateMessage isProfessor={isProfessor} />,
+		// 	},
+		// ];
+
 		courseTabs = [
 			{
-				text: "Announcements",
-				link: `${PROFESSOR_COURSES_LINK}/${course.id}/announcemetns`,
+				id: 1,
+				text: tabsTextList[0],
+				link: `${relativePath}/${tabsTextList[0].toLowerCase()}`,
+				path: [
+					`${relativePath}`,
+					`${relativePath}/${tabsTextList[0].toLowerCase()}`,
+				],
+				isActive:
+					location.pathname.includes(tabsTextList[0].toLowerCase()) ||
+					location.pathname === `${relativePath}`,
+				component: <Announcements isProfessor={isProfessor} />,
 			},
 			{
-				text: "Quizzes",
-				link: `${PROFESSOR_COURSES_LINK}/${course.id}/quizzes`,
+				id: 2,
+				text: tabsTextList[1],
+				link: `${relativePath}/${tabsTextList[1].toLowerCase()}`,
+				path: `${relativePath}/${tabsTextList[1].toLowerCase()}`,
+				isActive: location.pathname.includes(tabsTextList[1].toLowerCase()),
 			},
 			{
+				id: 3,
 				text: "Messages",
-				link: `${PROFESSOR_COURSES_LINK}/${course.id}/messages`,
+				link: `${relativePath}/messages`,
+				path: [
+					`${relativePath}/messages`,
+					`${relativePath}/messages/recieved`,
+					`${relativePath}/messages/sent`,
+					`${relativePath}/messages/sendmessage`,
+				],
+				isActive: location.pathname.includes("messages"),
+				component: (
+					<MessageContextProvider>
+						<Messages />
+					</MessageContextProvider>
+				),
 			},
 		];
-		console.log("Student");
 	}
-	//functions
 
+	//functions
+	//########################### courses #####################
 	const handleCourseState = course => {
 		setCourse(course);
 	};
@@ -104,17 +147,10 @@ const UserDataContextProvider = ({ children }) => {
 		setCourseNotFound(false);
 	};
 
-	const handleWaitPosts = () => {
-		setWaitPosts(true);
-	};
-
-	const handleHasMoreForPosts = () => {
-		setHasMore(true);
-	};
-
-	const addCourse = newCourse => {
-		return createCourse(newCourse)
+	const addCourse = (newCourse, abortConst) => {
+		return createCourse(newCourse, abortConst)
 			.then(({ data, res }) => {
+				console.log(data, res);
 				if (res.ok) {
 					setCourses([...courses, data]);
 
@@ -124,7 +160,32 @@ const UserDataContextProvider = ({ children }) => {
 				return { data, res };
 			})
 			.catch(err => {
-				console.log(err);
+				if (err.name === "AbortError") {
+					console.log("Abort fetch");
+				} else {
+					console.log(err);
+				}
+			});
+	};
+
+	const enrollOnCourse = (key, abort) => {
+		return enrollCourse(key, abort)
+			.then(({ data, res }) => {
+				console.log(data, res);
+				if (res.ok) {
+					setCourses([...courses, data]);
+
+					return { data, res };
+				}
+
+				return { data, res };
+			})
+			.catch(err => {
+				if (err.name === "AbortError") {
+					console.log("Abort fetch");
+				} else {
+					console.log(err);
+				}
 			});
 	};
 
@@ -169,6 +230,15 @@ const UserDataContextProvider = ({ children }) => {
 					console.log(err);
 				}
 			});
+	};
+
+	//########################### posts #####################
+	const handleWaitPosts = () => {
+		setWaitPosts(true);
+	};
+
+	const handleHasMoreForPosts = () => {
+		setHasMore(true);
 	};
 
 	const addPost = (...args) => {
@@ -221,6 +291,58 @@ const UserDataContextProvider = ({ children }) => {
 			});
 	};
 
+	//########################### messages #####################
+
+	//########################### StudentList #####################
+	// const handleFinishSendingMessage = () => {
+	// 	setFinishSendingMessage(false);
+	// };
+
+	const getStudentList = (...args) => {
+		fetchListOfStudents(args)
+			.then(({ data, res }) => {
+				setWaitStudentList(false);
+
+				if (res.ok) {
+					console.log("data", data);
+					setStudents(data.items);
+					return;
+				}
+
+				console.log(data.message, data.status);
+			})
+			.catch(err => {
+				if (err.name === "AbortError") {
+					console.log("Abort fetch");
+				} else {
+					console.log(err);
+				}
+			});
+	};
+
+	// const sendMessage = (...args) => {
+	// 	return createMessage(args)
+	// 		.then(({ data, res }) => {
+	// 			setFinishSendingMessage(true);
+	// 			console.log("data", data);
+
+	// 			if (res.ok) {
+	// 				// setPosts([...posts, data]);
+
+	// 				return { data, res };
+	// 			}
+
+	// 			return { data, res };
+	// 		})
+	// 		.catch(err => {
+	// 			if (err.name === "AbortError") {
+	// 				console.log("Abort fetch");
+	// 			} else {
+	// 				console.log(err);
+	// 			}
+	// 		});
+	// };
+
 	return (
 		<UserDataContext.Provider
 			value={{
@@ -234,6 +356,7 @@ const UserDataContextProvider = ({ children }) => {
 				courses,
 				waitCourses,
 				addCourse,
+				enrollOnCourse,
 				getCourse,
 				getCourses,
 				posts,
@@ -243,6 +366,13 @@ const UserDataContextProvider = ({ children }) => {
 				hasMore,
 				addPost,
 				getPosts,
+				// messageSidebarItems,
+				students,
+				waitStudentList,
+				// finishSendingMessage,
+				getStudentList,
+				// sendMessage,
+				// handleFinishSendingMessage,
 			}}
 		>
 			{children}

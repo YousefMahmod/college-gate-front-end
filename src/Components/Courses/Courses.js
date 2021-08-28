@@ -2,19 +2,19 @@ import { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../../Contexts/UserDataContext";
 import CourseButton from "./CourseButton";
 import styles from "./Courses.module.css";
-import CreateCourse from "./CreateCourse";
 import CreateOrEnrollCourse from "./CreateOrEnrollCourse";
 
 const Courses = ({ isProfessor }) => {
-	const [showCreateCourseCard, setShowCreateCourseCard] = useState(false);
+	const [showCreateOrEnrollCourseCard, setShowCreateOrEnrollCourseCard] =
+		useState(false);
 	const { courses, getCourses, waitCourses } = useContext(UserDataContext);
 
-	const popupCreateCourseWindow = () => {
-		setShowCreateCourseCard(true);
+	const popupCreateOrEnrollCourseWindow = () => {
+		setShowCreateOrEnrollCourseCard(true);
 	};
 
-	const closeCreateCourseCard = () => {
-		setShowCreateCourseCard(false);
+	const closeCreateOrEnrollCourseCard = () => {
+		setShowCreateOrEnrollCourseCard(false);
 	};
 
 	useEffect(() => {
@@ -30,42 +30,54 @@ const Courses = ({ isProfessor }) => {
 	const showProfessorCourses = () => {
 		if (courses) {
 			return (
-				<div className={styles.courses}>
+				<>
 					{courses.map(course => (
-						<CourseButton isProfessor={true} course={course} key={course.id} />
+						<CourseButton
+							isProfessor={true}
+							course={course}
+							isCreateOrEnrollButton={false}
+							key={course.id}
+						/>
 					))}
-
-					{/* <CourseButton isCreateButton={true} isProfessor={true} course = {null}/> */}
-					<CreateOrEnrollCourse
-						isProfessor={true}
-						popupCreateCourseWindow={popupCreateCourseWindow}
-					/>
-					{showCreateCourseCard && (
-						<CreateCourse closeCreateCourseCard={closeCreateCourseCard} />
-					)}
-				</div>
-			);
-		} else if (!waitCourses) {
-			return (
-				<div className={styles.courses}>
-					<CreateOrEnrollCourse
-						isProfessor={true}
-						popupCreateCourseWindow={popupCreateCourseWindow}
-					/>
-					{showCreateCourseCard && (
-						<CreateCourse closeCreateCourseCard={closeCreateCourseCard} />
-					)}
-				</div>
+				</>
 			);
 		}
 	};
 
-	const showStudentCourses = () => {};
+	const showStudentCourses = () => {
+		if (courses) {
+			return (
+				<>
+					{courses.map(course => (
+						<CourseButton
+							isProfessor={false}
+							course={course}
+							isCreateOrEnrollButton={false}
+							key={course.id}
+						/>
+					))}
+				</>
+			);
+		}
+	};
 
 	return (
-		<div>
+		<div className={styles.courses}>
 			{waitCourses && <div> Loading .....</div>}
 			{isProfessor ? showProfessorCourses() : showStudentCourses()}
+
+			<CourseButton
+				isProfessor={isProfessor}
+				isCreateOrEnrollButton={true}
+				popupCreateOrEnrollCourseWindow={popupCreateOrEnrollCourseWindow}
+			/>
+
+			{showCreateOrEnrollCourseCard && (
+				<CreateOrEnrollCourse
+					isPrfoessor={isProfessor}
+					closeCreateOrEnrollCourseCard={closeCreateOrEnrollCourseCard}
+				/>
+			)}
 		</div>
 	);
 };

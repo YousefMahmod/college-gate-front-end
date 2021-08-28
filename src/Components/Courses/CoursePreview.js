@@ -1,21 +1,31 @@
+import UserPreview from "../UserPreview/UserPreview";
 import styles from "./CoursePreview.module.css";
 
 const CoursePreview = ({ course, isProfessor }) => {
 	const showProfessorCoursePreview = () => {
 		return (
-			<div className={styles.course_preview}>
-				<div className={styles.course_content}>
-					<p> {course.name} course</p>
-					<p> Key: {course.key} </p>
-				</div>
-			</div>
+			<>
+				<p> {course.name} course</p>
+				<p> Key: {course.key} </p>
+			</>
 		);
 	};
 
-	const showStudentCoursePreview = () => {};
+	const showStudentCoursePreview = () => {
+		return (
+			<>
+				<UserPreview
+					user={course.professor}
+					course={course}
+					date=""
+					showOtherPreviewUser={true}
+				/>
+			</>
+		);
+	};
 
 	return (
-		<div>
+		<div className={styles.course_preview}>
 			{isProfessor ? showProfessorCoursePreview() : showStudentCoursePreview()}
 		</div>
 	);

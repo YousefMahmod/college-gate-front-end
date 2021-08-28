@@ -1,25 +1,5 @@
 .cover_course {
-	/* position: relative; */
-	/* object-fit: cover; */
 	display: flex;
 	align-items: flex-end;
 	width: 100%;
-}
-
-/* .cover_course .cover_image {
-	height: 100%;
-	width: 100%;
-	/* height: 260px; 
-	height: 170px;
-} */
-
-.cover_course .course_preview {
-	width: fit-content;
-	/* position: absolute; */
-	/* top: 70%; */
-	/* top: 60%;
-	margin-left: 20px; */
-	/* position: relative */
-	margin-left: 15px;
-    margin-bottom: 5px;
 }

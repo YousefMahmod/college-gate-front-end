@@ -1,41 +1,53 @@
 import { useContext } from "react";
-import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { STUDENT_COURSES_LINK, STUDENT_HOME_LINK, STUDENT_WARNINGS_LINK } from "../../Constants";
+import {
+	Redirect,
+	Route,
+	Switch,
+	useLocation,
+	useRouteMatch,
+} from "react-router-dom";
+import {
+	STUDENT_COURSES_LINK,
+	STUDENT_HOME_LINK,
+	STUDENT_WARNINGS_LINK,
+} from "../../Constants";
 import { AuthContext } from "../../Contexts/AuthContext";
+import { ItemsOfSideBarContext } from "../../Contexts/ItemsOfSideBarContext";
+import UserDataContextProvider from "../../Contexts/UserDataContext";
+import Course from "../Courses/Course";
 import Courses from "../Courses/Courses";
 import NotFound from "../NotFound/NotFound";
 import Home from "./Home";
 import styles from "./Student.module.css";
 
 const Student = () => {
-    
-    const user = useContext(AuthContext);
-    const match = useRouteMatch();
+	const { user } = useContext(AuthContext);
+	const match = useRouteMatch();
+	const location = useLocation();
+	const { listOfItems } = useContext(ItemsOfSideBarContext);
 
-    return ( 
-       
-        <Switch>
+	if (location.pathname === "/student") {
+		return <Redirect to={STUDENT_HOME_LINK} />;
+	}
 
-            <Route exact path={[match.path, STUDENT_HOME_LINK]}>
-                <Home />
-            </Route>
+	return (
+		<Switch>
+			<UserDataContextProvider>
+				<Route path={`${STUDENT_COURSES_LINK}/:id`}>
+					<Course isProfessor={false} />
+				</Route>
+				{listOfItems.map(item => (
+					<Route exact path={item.link} key={item.id}>
+						{item.component}
+					</Route>
+				))}
+			</UserDataContextProvider>
 
-            <Route exact path={STUDENT_COURSES_LINK}>
-                <Courses />
-            </Route>
+			{/* <Route path="*">
+				<NotFound />
+			</Route> */}
+		</Switch>
+	);
+};
 
-            <Route exact path={STUDENT_WARNINGS_LINK}>
-                <div className={styles.home}>Warnings</div>
-            </Route>
-
-            <Route path="*">
-                <NotFound />
-            </Route>
-            
-        </Switch>
-        
-    );
-}
- 
-export default Student
-;
+export default Student;

@@ -1,0 +1,47 @@
+.create_message {
+	/* width: fit-content; */
+	background-color: var(--bgDarkest);
+	font-size: var(--f2);
+	padding: 10px;
+}
+
+.create_message textarea {
+	padding: 10px;
+	/* color: var(--bgDarkest); */
+	background-color: var(--bgLessDarkest);
+	width: 100%;
+	/* border-radius: 16px;
+	cursor: pointer;  */
+	/* width: 100%; */
+	font-size: var(--f1);
+	/* height: 143px; */
+	/* max-height: 93px; */
+	resize: none;
+	margin-top: 15px;
+	overflow: hidden;
+}
+/* .create_message  */
+.create_message .subject {
+	width: 83%;
+	margin-left: 1%;
+	padding: 2px;
+	background-color: var(--bgLessDarkest);
+	font-size: var(--f1);
+}
+.create_message .student_list select {
+	width: 60%;
+	margin-left: 3px;
+	background: var(--bgLessDarkest);
+	color: white;
+	font-size: var(--f2);
+}
+.create_message .student_list select option {
+	color: white;
+	font-size: var(--f2);
+}
+.create_message .student_list {
+	margin-bottom: 15px;
+}
+.create_message form label {
+	font-size: var(--f2);
+}

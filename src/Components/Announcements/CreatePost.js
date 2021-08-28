@@ -20,6 +20,7 @@ const CreatePost = () => {
 
 		setWaitCreatePost(true);
 	};
+
 	useEffect(() => {
 		console.log("INSIDE CREATE USE EFFECT");
 
@@ -71,10 +72,14 @@ const CreatePost = () => {
 					maxLength="800"
 				></textarea>
 				<div style={{ textAlign: "right", marginTop: "10px" }}>
-					<input type="submit" value="post" className={submitPostDisplay} />
+					<input
+						type="submit"
+						value="post"
+						className={`submit_button ${submitPostDisplay}`}
+					/>
 
 					{createPostError && (
-						<span className="err_messages">{createPostError}</span>
+						<span className="err_message">{createPostError}</span>
 					)}
 				</div>
 			</form>

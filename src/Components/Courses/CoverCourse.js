@@ -21,9 +21,8 @@ const CoverCourse = ({ isProfessor }) => {
 				alt="CourseCoverImage"
 				className={styles.cover_image}
 			/> */}
-			<div className={styles.course_preview}>
-				<CoursePreview course={course} isProfessor={isProfessor} />
-			</div>
+
+			<CoursePreview course={course} isProfessor={isProfessor} />
 		</div>
 	);
 };

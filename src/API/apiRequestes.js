@@ -1,9 +1,12 @@
 import {
 	CREATE_COURSE_END_POINT,
+	CREATE_MESSAGE_END_POINT,
 	CREATE_POST_END_POINT,
+	ENROLL_COURSE_END_POINT,
 	GET_COURSES_END_POINT,
 	GET_COURSE_END_POINT,
 	GET_LIST_OF_POSTS_END_POINT,
+	GET_LIST_OF_STUDENTS_END_POINT,
 	USER_END_POINT,
 } from "../Constants";
 
@@ -48,19 +51,40 @@ export const logInApi = async (userType, userInfo) => {
 
 //createCourse
 
-export const createCourse = async name => {
+export const createCourse = async (name, abort) => {
 	const token = localStorage.getItem("token");
 
-	// console.log("CourseName", name);
+	console.log("CourseName", name);
 	// console.log("token", token);
 
 	const res = await fetch(CREATE_COURSE_END_POINT, {
+		signal: abort.signal,
 		method: "POST",
 		headers: {
 			"content-type": "application/json",
 			Authorization: `Bearer ${JSON.parse(token)}`,
 		},
 		body: JSON.stringify(name),
+	});
+	const data = await res.json();
+
+	return { data, res };
+};
+
+export const enrollCourse = async (key, abort) => {
+	const token = localStorage.getItem("token");
+
+	console.log("CourseKey", key);
+	// console.log("token", token);
+
+	const res = await fetch(`${ENROLL_COURSE_END_POINT}/${key}/enroll`, {
+		signal: abort.signal,
+		method: "POST",
+		headers: {
+			"content-type": "application/json",
+			Authorization: `Bearer ${JSON.parse(token)}`,
+		},
+		// body: JSON.stringify(key),
 	});
 	const data = await res.json();
 
@@ -144,6 +168,45 @@ export const fetchListOfPosts = async ([id, offset, abort]) => {
 			},
 		}
 	);
+	const data = await res.json();
+
+	return { data, res };
+};
+
+export const fetchListOfStudents = async ([id, abort]) => {
+	const token = localStorage.getItem("token");
+
+	console.log("Courseid", id);
+
+	const res = await fetch(`${GET_LIST_OF_STUDENTS_END_POINT}/${id}/students`, {
+		signal: abort.signal,
+		method: "GET",
+		headers: {
+			"content-type": "application/json",
+			Authorization: `Bearer ${JSON.parse(token)}`,
+		},
+	});
+	const data = await res.json();
+
+	return { data, res };
+};
+export const createMessage = async ([message, id, abort]) => {
+	const token = localStorage.getItem("token");
+
+	console.log("message", message);
+	console.log("courseId", id);
+	// console.log("CourseName", name);
+	// console.log("token", token);
+
+	const res = await fetch(`${CREATE_MESSAGE_END_POINT}/${id}`, {
+		signal: abort.signal,
+		method: "POST",
+		headers: {
+			"content-type": "application/json",
+			Authorization: `Bearer ${JSON.parse(token)}`,
+		},
+		body: JSON.stringify(message),
+	});
 	const data = await res.json();
 
 	return { data, res };

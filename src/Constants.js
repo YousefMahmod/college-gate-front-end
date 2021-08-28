@@ -5,6 +5,9 @@ export const STUDENT_WARNINGS_LINK = "/student/warnings";
 
 export const PROFESSOR_MESSAGES_OVERVIEW_LINK = "/professor/messagesoverview";
 export const PROFESSOR_COURSES_LINK = "/professor/courses";
+export const PROFESSOR_Messages_recieved_LINK = "/messages/recieved";
+export const PROFESSOR_Messages_sent_LINK = "/messages/sent";
+export const PROFESSOR_Messages_send_LINK = "/messages/sendmessage";
 // export const PROFESSOR_COURSE_LINK = "/professor/course";
 export const DEPARTMENT_WARNINGS_LINK = "/department/warnings";
 
@@ -20,8 +23,11 @@ export const USER_END_POINT = `${URL}/user`;
 export const CREATE_COURSE_END_POINT = `${URL}/course/me`;
 export const GET_COURSES_END_POINT = `${URL}/course/all`;
 export const GET_COURSE_END_POINT = `${URL}/course`;
+export const ENROLL_COURSE_END_POINT = `${URL}/course`;
+export const GET_LIST_OF_STUDENTS_END_POINT = `${URL}/course`;
 export const CREATE_POST_END_POINT = `${URL}/announcement/me/course`;
 export const GET_LIST_OF_POSTS_END_POINT = `${URL}/announcement/course`;
+export const CREATE_MESSAGE_END_POINT = `${URL}/message/me/course`;
 // export const CREATE_POST_END_POINT = `${URL}/announcement/me/course`;
 
 //Actions
