@@ -126,7 +126,7 @@ $ npm run-script dev
 <hr />
 
 ## Video
-- [Player](https://drive.google.com/file/d/1OQqD1L4pD9Ldq4rhuCvlOjnx0AO4MM-M/view?usp=sharing)
+- [CollegeGate video](https://drive.google.com/file/d/1OQqD1L4pD9Ldq4rhuCvlOjnx0AO4MM-M/view?usp=sharing)
 
 ## File Structure
                                     
