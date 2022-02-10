@@ -42,7 +42,7 @@
 - [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 
 ## Getting Started
-> This is an list of needed instructions to set up your project locally, to get a local copy up and running follow these instructuins.
+> This is a list of needed instructions to set up your project locally, to get a local copy up and running follow these instructuins.
 
 ### Installation for front-end
 
