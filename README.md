@@ -158,4 +158,4 @@ $ npm run-script dev
  
 ## License
 
-> This software is licensed under MIT License, See [License](https://github.com/AbdallahHemdan/oudFrontend/blob/master/LICENSE) for more information ©AbdallahHemdan.
+> This software is licensed under MIT License, See [License](https://github.com/AbdallahHemdan/oudFrontend/blob/master/LICENSE) for more information ©youssefGithub99.
